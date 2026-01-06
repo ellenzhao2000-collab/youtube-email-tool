@@ -1,0 +1,4 @@
+Flask
+psd-tools
+Pillow
+requests

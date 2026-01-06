@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <title>YouTube Email Image Generator</title>
+  <style>
+    body { font-family: Arial; max-width: 600px; margin: 40px auto; }
+    label { display: block; margin-top: 16px; font-weight: bold; }
+    input, select, button { width: 100%; padding: 8px; margin-top: 6px; }
+    button { margin-top: 24px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>YouTube → Email Image</h2>
+  <form method="post">
+    <label>YouTube URL</label>
+    <input name="youtube_url" required>
+
+    <label>Headline</label>
+    <input name="headline" required>
+
+    <label>Color Block</label>
+    <input type="color" name="color" value="#C41E3A">
+
+    <label>Branding</label>
+    <select name="branding">
+      <option value="youtube">YouTube</option>
+      <option value="generic">Generic</option>
+    </select>
+
+    <label>Still Timestamp (optional)</label>
+    <input name="timestamp" placeholder="MM:SS or HH:MM:SS">
+
+    <button type="submit">Generate JPG</button>
+  </form>
+</body>
+</html>

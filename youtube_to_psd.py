@@ -44,9 +44,10 @@ def insert_image_above_dark(psd, image):
 def update_headline(psd, text):
     layer = next(
         l for l in psd.descendants()
-        if isinstance(l, TypeLayer) and l.name == "Headline"
+        if isinstance(l, TypeLayer) and l.name == "TK Video"
     )
     layer.text = text
+
 
 def update_color_block(psd, hex_color):
     rgb = tuple(int(hex_color[i:i+2], 16) for i in (1, 3, 5))

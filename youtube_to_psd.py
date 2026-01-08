@@ -35,11 +35,16 @@ def capture_frame(youtube_url, timestamp, out_path):
         out_path
     ], check=True)
 
-def insert_image_above_dark(psd, image):
-    dark = next(l for l in psd.descendants() if l.name == "Dark")
-    new_layer = PixelLayer.from_image(psd, image, name="Video Image")
-    parent = dark.parent
-    parent.layers.insert(parent.layers.index(dark), new_layer)
+from psd_tools.api.smart_object import SmartObjectLayer
+
+def replace_smart_object(psd, image_path):
+    layer = next(
+        l for l in psd.descendants()
+        if isinstance(l, SmartObjectLayer) and l.name == "Video Image"
+    )
+
+    layer.replace_contents(image_path)
+
 
 def update_headline(psd, text):
     layer = next(
@@ -84,7 +89,7 @@ def generate_email_image(
     else:
         image = download_thumbnail(video_id)
 
-    insert_image_above_dark(psd, image)
+    replace_smart_object(psd, image_path)
     update_headline(psd, headline_text)
     update_color_block(psd, color_hex)
     toggle_brand(psd, branding)
